@@ -48,7 +48,7 @@ def hello_greg(event):
         ]
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
+            messages
         )
     else:
         line_bot_api.reply_message(
