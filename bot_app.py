@@ -41,6 +41,11 @@ def callback():
 def hello_greg(event):
     message = event.message.text
     if message == "greg":
+        messages = [
+            TextSendMessage("Well, Hello master Greg! What seems to be the problem?"),
+            TextSendMessage("I am still in development, unfortunately"),
+            TextSendMessage("So I cannot do much :/")
+        ]
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
