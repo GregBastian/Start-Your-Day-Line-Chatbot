@@ -15,7 +15,7 @@ line_bot_api = LineBotApi('uOcExz3z51aHRXtlnHaaKEgLTHj2fN0XNUAoknZDIfz51K5zJLGVd
 handler = WebhookHandler('7266c1cbbd21ef10ef247a977d4cdedd')
 
 
-@app.route("/home")
+@app.route("/")
 def homepage():
     return "<h1>Hello World!</h1>"
 
