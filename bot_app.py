@@ -38,19 +38,15 @@ def callback():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-def repeat_user_message(event):
-    message = event.message.text
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(message)
-    )
-
-
-@handler.add(MessageEvent, message=TextMessage)
 def hello_greg(event):
     message = event.message.text
     if message == "greg":
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
+        )
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(message)
         )
