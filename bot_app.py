@@ -17,7 +17,11 @@ handler = WebhookHandler('7266c1cbbd21ef10ef247a977d4cdedd')
 
 @app.route("/")
 def homepage():
-    return "<h1>Hello World!</h1>"
+    return {
+        "response": "Hello World",
+        "type": "json"
+    }
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -39,4 +43,3 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
-
