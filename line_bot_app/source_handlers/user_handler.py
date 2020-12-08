@@ -24,8 +24,7 @@ def user_message_event_handler(event, line_bot_api):
             TextSendMessage(text='Hello, world',
                             quick_reply=QuickReply(items=[
                                 QuickReplyButton(image_url=QUICK_REPLY_ICONS.get("weather_icon", ""),
-                                                 action=MessageAction(label="Today's Weather", text="weather")),
-                                QuickReplyButton(image_url="")
+                                                 action=MessageAction(label="Today's Weather", text="weather"))
                             ]))
         )
     else:
