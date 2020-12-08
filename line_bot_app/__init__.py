@@ -15,7 +15,7 @@ from linebot.models import *
 def create_app(line_bot_api, handler):
     app = Flask(__name__)
 
-    from line_bot_app.source_handlers import user_handler
+    from line_bot_app.source_handlers import user_handlers
 
     logging.basicConfig(level=logging.INFO)
 
@@ -35,32 +35,20 @@ def create_app(line_bot_api, handler):
 
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
-        message = event.message.text
-        app.logger.info(f"Received text '{message}' with id '{event.source.user_id}'")
+        message = str(event.message.text).lower()
         if isinstance(event.source, SourceUser):
-            app.logger.info(f"Received text '{message}' with id '{event.source.user_id}'")
-            user_handler.user_message_event_handler(event, line_bot_api)
+            app.logger.info(f"Received text '{message}' from user-to-user mode from id '{event.source.user_id}'")
+            user_handlers.user_message_event_handler(event, line_bot_api)
+        elif isinstance(event.source,  SourceGroup):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage("Feature is not implemented yet")
+            )
+        elif isinstance(event.source, SourceRoom):
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage("Feature is not implemented yet")
+            )
 
-        # if message == "greg":
-        #     line_bot_api.reply_message(
-        #         event.reply_token,
-        #         TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
-        #     )
-        #
-        # elif message == "qr":
-        #     line_bot_api.reply_message(
-        #         event.reply_token,
-        #         TextSendMessage(text='Hello, world',
-        #                         quick_reply=QuickReply(items=[
-        #                             QuickReplyButton(image_url=QUICK_REPLY_ICONS.get("weather_icon"),
-        #                                              action=MessageAction(label="Today's Weather", text="weather")),
-        #                             QuickReplyButton(image_url="")
-        #                         ]))
-        #     )
-        # else:
-        #     line_bot_api.reply_message(
-        #         event.reply_token,
-        #         TextSendMessage(message)
-        #     )
 
     return app
