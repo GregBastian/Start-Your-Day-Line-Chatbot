@@ -1,5 +1,6 @@
 from flask import Flask, request, abort
 import logging
+import os
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -10,11 +11,12 @@ app = Flask(__name__)
 logging.basicConfig(level=logging.INFO)
 
 # Channel Access Token
-line_bot_api = LineBotApi('uOcExz3z51aHRXtlnHaaKEgLTHj2fN0XNUAoknZDIfz51K5zJLGVdCie9UoBjtam2iv'
-                          '+QryLNLxc0Stau7NyvPbvEWjtvh6gsnBUlskp6KZry9yBSJ9ztXFpn0IMm0Rpks2cyl2K9l6+WNVmcbTdTAdB04t89'
-                          '/1O/w1cDnyilFU=')
+# Get Environment variable for channel secret token stored in CHANNEL ACCESS TOKEN
+line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
+
 # Channel Secret
-handler = WebhookHandler('7266c1cbbd21ef10ef247a977d4cdedd')
+# Get Environment variable for channel secret token stored in CHANNEL SECRET
+handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
 
 @app.route("/")
