@@ -15,9 +15,9 @@ from linebot.models import *
 def create_app(line_bot_api, handler):
     app = Flask(__name__)
 
-    from line_bot_app.source_handlers import user_handlers
-
     logging.basicConfig(level=logging.INFO)
+
+    from line_bot_app.source_handlers.user_handler import user_message_event_handler
 
     @app.route("/callback", methods=['POST'])
     def callback():
@@ -35,20 +35,23 @@ def create_app(line_bot_api, handler):
 
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
+
         message = str(event.message.text).lower()
         if isinstance(event.source, SourceUser):
-            app.logger.info(f"Received text '{message}' from user-to-user mode from id '{event.source.user_id}'")
-            user_handlers.user_message_event_handler(event, line_bot_api)
-        elif isinstance(event.source,  SourceGroup):
+            app.logger.info(f"Received SourceUser text message in  from id '{event.source.user_id}'")
+            user_message_event_handler.user_message_event_handler_function(event, line_bot_api, message)
+
+        elif isinstance(event.source, SourceGroup):
+            app.logger.info(f"Received SourceGroup text message in from id '{event.source.user_id}'")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage("Feature is not implemented yet")
             )
         elif isinstance(event.source, SourceRoom):
+            app.logger.info(f"Received SourceRoom text message in from id '{event.source.user_id}'")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage("Feature is not implemented yet")
             )
-
 
     return app
