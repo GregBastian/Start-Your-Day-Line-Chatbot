@@ -1,10 +1,13 @@
 from flask import Flask, request, abort
+import logging
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 
 app = Flask(__name__)
+
+logging.basicConfig(level=logging.INFO)
 
 # Channel Access Token
 line_bot_api = LineBotApi('uOcExz3z51aHRXtlnHaaKEgLTHj2fN0XNUAoknZDIfz51K5zJLGVdCie9UoBjtam2iv'
@@ -46,21 +49,14 @@ def hello_greg(event):
             event.reply_token,
             TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
         )
-    else:
+
+    elif message == "qr":
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(message)
-        )
-
-
-@handler.add(MessageEvent, message=TextMessage)
-def hello_ines(event):
-    SourceUser
-    message = event.message.text
-    if message == "greg":
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage("Well, Hello master Greg! What seems to be the problem?")
+            TextSendMessage(text='Hello, world',
+                            quick_reply=QuickReply(items=[
+                                QuickReplyButton(action=MessageAction(label="label", text="text"))
+                            ]))
         )
     else:
         line_bot_api.reply_message(
