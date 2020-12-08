@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 import logging
 import os
+from line_bot_app.image_urls import QUICK_REPLY_ICONS
 
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -43,8 +44,8 @@ def callback():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-def hello_greg(event):
-    SourceUser
+def text_handler_general(event):
+    recipientType = event.source.type
     message = event.message.text
     if message == "greg":
         line_bot_api.reply_message(
@@ -57,8 +58,9 @@ def hello_greg(event):
             event.reply_token,
             TextSendMessage(text='Hello, world',
                             quick_reply=QuickReply(items=[
-                                QuickReplyButton(image_url="https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png",
-                                                 action=MessageAction(label="label", text="text"))
+                                QuickReplyButton(image_url=QUICK_REPLY_ICONS.get("weather_icon"),
+                                                 action=MessageAction(label="Today's Weather", text="weather")),
+                                QuickReplyButton(image_url="")
                             ]))
         )
     else:
