@@ -5,13 +5,13 @@ Created on 08/12/2020
 @office: Sprint Asia Technology
 @email: greg.sebastian@sprintasia.co.id / ivansebastian60@gmail.com
 """
-from line_bot_app import handler, line_bot_api
 from linebot.models import *
 
 from line_bot_app.image_urls import QUICK_REPLY_ICONS
+from line_bot_app import line_bot_api
 
 
-def user_message_event_handler(event):
+def user_message_event_handler(event, line_bot_api):
     message = event.message.text
     if message == "greg":
         line_bot_api.reply_message(

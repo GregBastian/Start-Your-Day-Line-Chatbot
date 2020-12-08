@@ -7,25 +7,15 @@ Created on 08/12/2020
 """
 from flask import Flask, request, abort
 import logging
-import os
 
-from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 
-from line_bot_app.handlers import user_handler
 
-# Channel Access Token
-# Get Environment variable for channel secret token stored in CHANNEL ACCESS TOKEN
-line_bot_api = LineBotApi(os.getenv('CHANNEL_ACCESS_TOKEN'))
-
-# Channel Secret
-# Get Environment variable for channel secret token stored in CHANNEL SECRET
-handler = WebhookHandler(os.getenv('CHANNEL_SECRET'))
-
-
-def create_app():
+def create_app(line_bot_api, handler):
     app = Flask(__name__)
+
+    from line_bot_app.source_handlers import user_handler
 
     logging.basicConfig(level=logging.INFO)
 
@@ -45,11 +35,9 @@ def create_app():
 
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
-        recipientType = event.source
         message = event.message.text
         if isinstance(event.source, SourceUser):
-            user_handler.user_message_event_handler(event)
-
+            user_handler.user_message_event_handler(event, line_bot_api)
 
         # if message == "greg":
         #     line_bot_api.reply_message(
