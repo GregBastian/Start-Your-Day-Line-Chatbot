@@ -8,7 +8,6 @@ Created on 08/12/2020
 from linebot.models import *
 
 from line_bot_app.image_urls import QUICK_REPLY_ICONS
-from line_bot_app import line_bot_api
 
 
 def user_message_event_handler(event, line_bot_api):
