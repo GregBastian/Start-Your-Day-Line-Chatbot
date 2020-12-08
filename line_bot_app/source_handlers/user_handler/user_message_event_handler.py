@@ -29,11 +29,12 @@ def message_equals_admin(event, line_bot_api):
 def message_equals_qr(event, line_bot_api):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(quick_reply=QuickReply(items=[
+        TextSendMessage(text="abracadabra",
+                        quick_reply=QuickReply(items=[
                             QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
                                              action=MessageAction(label="Today's Weather", text="weather")),
-                        QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
-                                         action=MessageAction(label="Today's Weather", text="weather"))
+                            QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
+                                             action=MessageAction(label="Today's Weather", text="weather"))
                         ]))
     )
 
