@@ -60,3 +60,5 @@ def create_app(line_bot_api, handler):
         #         event.reply_token,
         #         TextSendMessage(message)
         #     )
+
+    return app
