@@ -55,7 +55,8 @@ def hello_greg(event):
             event.reply_token,
             TextSendMessage(text='Hello, world',
                             quick_reply=QuickReply(items=[
-                                QuickReplyButton(action=MessageAction(label="label", text="text"))
+                                QuickReplyButton(image_url="https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png",
+                                                 action=MessageAction(label="label", text="text"))
                             ]))
         )
     else:
