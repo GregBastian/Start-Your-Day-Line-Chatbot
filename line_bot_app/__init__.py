@@ -35,7 +35,6 @@ def create_app(line_bot_api, handler):
 
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
-
         message = str(event.message.text).lower()
         if isinstance(event.source, SourceUser):
             app.logger.info(f"Received SourceUser text message in  from id '{event.source.user_id}'")
