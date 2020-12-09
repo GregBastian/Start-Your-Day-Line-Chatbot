@@ -15,9 +15,10 @@ def message_equals_admin(event, line_bot_api):
     idSender = event.source.user_id
     profile = line_bot_api.get_profile(idSender)
     if idSender == ADMIN_ID:
+        emoji = {"index": 0, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "001"}
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(f"Halo Tuan {profile.display_name}! Ada yang bisa saya bantu? 0x100041 ")
+            TextSendMessage(f"$ Halo Tuan {profile.display_name}! Ada yang bisa saya bantu?", emojis=emoji)
         )
     else:
         profile = line_bot_api.get_profile(idSender)
@@ -34,8 +35,8 @@ def message_equals_qr(event, line_bot_api):
                         quick_reply=QuickReply(items=[
                             QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
                                              action=MessageAction(label="Today's Weather", text="weather")),
-                            QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
-                                             action=MessageAction(label="Today's Weather", text="weather"))
+                            QuickReplyButton(image_url=QuickReplyIcons.QOTD.value,
+                                             action=MessageAction(label="QOTD", text="qotd"))
                         ]))
     )
 
