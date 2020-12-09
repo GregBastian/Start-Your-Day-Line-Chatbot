@@ -18,7 +18,7 @@ def message_equals_admin(event, line_bot_api):
         emoji = {"index": 0, "productId": "5ac1bfd5040ab15980c9b435", "emojiId": "001"}
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(f"$ Halo Tuan {profile.display_name}! Ada yang bisa saya bantu?", emojis=emoji)
+            TextSendMessage(f"$ Halo Tuan {profile.display_name}! Ada yang bisa saya bantu?", emojis=[emoji])
         )
     else:
         profile = line_bot_api.get_profile(idSender)
