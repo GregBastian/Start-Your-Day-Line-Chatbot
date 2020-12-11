@@ -14,7 +14,8 @@ QUICK_REPLY_ICONS = {
 
 
 class ExternalUrlApis(Enum):
-    QOTD_URL = "https://type.fit/api/quotes"
+    QOTD_QUOTES_URL = "https://type.fit/api/quotes"
+    QOTD_IMG_URL = "https://picsum.photos/250/175"
 
 
 class QuickReplyIcons(Enum):

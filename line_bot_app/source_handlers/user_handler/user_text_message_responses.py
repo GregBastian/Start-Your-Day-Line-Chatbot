@@ -6,11 +6,9 @@ Created on 09/12/2020
 @email: greg.sebastian@sprintasia.co.id / ivansebastian60@gmail.com
 """
 
-import requests, random
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons, ExternalUrlApis, ADMIN_ID
-from line_bot_app.utils import Json2Object
+from line_bot_app.constants import QuickReplyIcons, ADMIN_ID
 
 
 class UserTextResponse:
@@ -44,14 +42,6 @@ class UserTextResponse:
     def message_equals_devnews(self, event, line_bot_api):
         pass
 
-    def message_equals_qotd(self, event, line_bot_api):
-        response = (requests.get(ExternalUrlApis.QOTD_URL.value).json())
-        randomEntryInResponse = random.choice(response)
-        quote, author = randomEntryInResponse.get("text", ""), randomEntryInResponse.get("author", "")
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(f"{quote}\n\n{author}")
-        )
 
     def message_equals_default(self, event, line_bot_api):
         line_bot_api.reply_message(
