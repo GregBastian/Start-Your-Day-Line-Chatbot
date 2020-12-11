@@ -142,10 +142,6 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                         "label": "WEBSITE",
                         "uri": "https://linecorp.com"
                     }
-                },
-                {
-                    "type": "spacer",
-                    "size": "sm"
                 }
             ],
             "flex": 0
