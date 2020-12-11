@@ -23,9 +23,10 @@ class UserFlexResponse:
         quotesAndAuthors = (requests.get(ExternalUrlApis.QOTD_QUOTES_URL.value)).json()
         randomEntryInResponse = random.choice(quotesAndAuthors)
         quote, author = randomEntryInResponse.get("text", ""), randomEntryInResponse.get("author", "")
+
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(get_qotd_flex_message(image, quote, author))
+            FlexSendMessage(alt_text="flex_message_quote", contents=get_qotd_flex_message(image, quote, author))
         )
 
 

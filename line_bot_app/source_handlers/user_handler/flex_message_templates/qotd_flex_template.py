@@ -2,7 +2,6 @@
 
 def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
     return {
-        "alt_text": "flex_message_quote",
         "type": "bubble",
         "header": {
             "type": "box",
