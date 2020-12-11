@@ -18,7 +18,7 @@ from line_bot_app.source_handlers.user_handler.flex_message_templates.qotd_flex_
 class UserFlexResponse:
 
     def message_equals_qotd(self, event, line_bot_api):
-        image = requests.get(ExternalUrlApis.QOTD_IMG_URL.value)
+        image = (requests.get(ExternalUrlApis.QOTD_IMG_URL.value)).url
         quotesAndAuthors = (requests.get(ExternalUrlApis.QOTD_QUOTES_URL.value)).json()
         randomEntryInResponse = random.choice(quotesAndAuthors)
         quote, author = randomEntryInResponse.get("text", ""), randomEntryInResponse.get("author", "")
