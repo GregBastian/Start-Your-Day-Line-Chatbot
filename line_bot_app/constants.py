@@ -13,9 +13,13 @@ QUICK_REPLY_ICONS = {
 }
 
 
+class ExternalUrlApis(Enum):
+    QOTD_URL = "https://type.fit/api/quotes"
+
+
 class QuickReplyIcons(Enum):
-    WEATHER = "https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png"
-    QOTD = "https://img.icons8.com/flat_round/64/000000/quote.png"
+    WEATHER_ICON = "https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png"
+    QOTD_ICON = "https://img.icons8.com/flat_round/64/000000/quote.png"
 
 
 ADMIN_ID = os.getenv("ADMIN_ID", "")
