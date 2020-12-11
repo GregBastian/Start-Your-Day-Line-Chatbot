@@ -38,7 +38,7 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                     "text": quoteText,
                     "weight": "bold",
                     "size": "lg",
-                    "wrap": "true",
+                    "wrap": True,
                     "align": "start",
                     "adjustMode": "shrink-to-fit",
                     "color": "#2b2a27"
