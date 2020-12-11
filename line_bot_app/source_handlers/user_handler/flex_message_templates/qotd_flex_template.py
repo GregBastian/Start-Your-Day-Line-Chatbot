@@ -3,6 +3,7 @@
 def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
     return {
         "type": "bubble",
+        "size": "kilo",
         "header": {
             "type": "box",
             "layout": "baseline",
