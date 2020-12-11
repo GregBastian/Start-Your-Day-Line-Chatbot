@@ -24,7 +24,7 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
         },
         "hero": {
             "type": "image",
-            "url": "https://picsum.photos/id/1/250/175",
+            "url": imageUrl,
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover"
@@ -45,7 +45,7 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                 },
                 {
                     "type": "text",
-                    "text": quoteText,
+                    "text": quoteAuthor,
                     "margin": "sm",
                     "size": "sm",
                     "color": "#2b2a2a"
