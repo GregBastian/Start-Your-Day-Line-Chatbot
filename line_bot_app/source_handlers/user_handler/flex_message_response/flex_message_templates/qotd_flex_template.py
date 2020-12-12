@@ -6,18 +6,17 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
         "size": "kilo",
         "header": {
             "type": "box",
-            "layout": "baseline",
+            "layout": "vertical",
             "contents": [
                 {
                     "type": "text",
-                    "text": "#Quote of the Day",
+                    "text": "#Random Quote",
                     "weight": "bold",
-                    "margin": "none",
-                    "size": "xl",
                     "style": "italic",
-                    "position": "relative",
-                    "align": "center",
                     "decoration": "underline",
+                    "align": "center",
+                    "size": "xl",
+                    "margin": "xs",
                     "color": "#2b2a27"
                 }
             ],
@@ -27,8 +26,9 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
             "type": "image",
             "url": imageUrl,
             "size": "full",
-            "aspectRatio": "20:13",
-            "aspectMode": "cover"
+            "aspectRatio": "17:10",
+            "aspectMode": "cover",
+            "margin": "none"
         },
         "body": {
             "type": "box",
@@ -38,21 +38,22 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                     "type": "text",
                     "text": quoteText,
                     "weight": "bold",
-                    "size": "lg",
+                    "size": "xl",
                     "wrap": True,
-                    "align": "start",
-                    "adjustMode": "shrink-to-fit",
                     "color": "#2b2a27"
                 },
                 {
                     "type": "text",
                     "text": quoteAuthor,
                     "margin": "sm",
-                    "size": "sm",
                     "color": "#2b2a2a"
                 }
             ],
-            "backgroundColor": "#ffd42b"
+            "backgroundColor": "#ffd42b",
+            "borderWidth": "none",
+            "cornerRadius": "none",
+            "margin": "none",
+            "spacing": "none"
         },
         "footer": {
             "type": "box",
@@ -61,17 +62,16 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
             "contents": [
                 {
                     "type": "button",
-                    "style": "link",
-                    "height": "sm",
                     "action": {
-                        "type": "message",
-                        "label": "Get Another Quote",
-                        "text": "qotd"
-                    }
-                },
-                {
-                    "type": "spacer",
-                    "size": "sm"
+                        "type": "postback",
+                        "label": "Kirim Quote Lagi",
+                        "data": "qotd"
+                    },
+                    "position": "relative",
+                    "margin": "sm",
+                    "height": "sm",
+                    "style": "primary",
+                    "color": "#e6be20"
                 }
             ],
             "flex": 0

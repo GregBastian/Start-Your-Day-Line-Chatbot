@@ -27,14 +27,14 @@ class UserTextResponse:
                 TextSendMessage(f"Tolong {profile.display_name}! Jangan berpura-pura jadi admin")
             )
 
-    def message_equals_qr(self, event, line_bot_api):
+    def message_equals_p(self, event, line_bot_api):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="abracadabra",
                             quick_reply=QuickReply(items=[
-                                # QuickReplyButton(image_url=QuickReplyIcons.WEATHER.value,
-                                #                  action=MessageAction(label="Today's Weather", text="weather")),
-                                QuickReplyButton(image_url=QuickReplyIcons.QOTD.value,
+                                 QuickReplyButton(image_url=QuickReplyIcons.WEATHER_ICON.value,
+                                                  action=MessageAction(label="Today's Weather", text="weather")),
+                                QuickReplyButton(image_url=QuickReplyIcons.QOTD_ICON.value,
                                                  action=MessageAction(label="QOTD", text="qotd"))
                             ]))
         )
@@ -50,4 +50,4 @@ class UserTextResponse:
         )
 
 
-user_text_response = UserTextResponse()
+user_text_response_obj = UserTextResponse()

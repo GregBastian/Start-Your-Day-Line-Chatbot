@@ -8,12 +8,11 @@ Created on 11/12/2020
 
 import random
 import requests
-from linebot.models import FlexSendMessage, BubbleContainer, BoxComponent, TextComponent, ImageComponent, URIAction, \
-    ButtonComponent, SeparatorComponent, IconComponent
+from linebot.models import FlexSendMessage
 
 from line_bot_app.constants import ExternalUrlApis
 
-from line_bot_app.source_handlers.user_handler.flex_message_templates.qotd_flex_template import get_qotd_flex_message
+from line_bot_app.source_handlers.user_handler.flex_message_response.flex_message_templates.qotd_flex_template import get_qotd_flex_message
 
 
 class UserFlexResponse:
@@ -30,4 +29,4 @@ class UserFlexResponse:
         )
 
 
-user_flex_response = UserFlexResponse()
+user_flex_response_obj = UserFlexResponse()
