@@ -38,13 +38,13 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                     "type": "text",
                     "text": quoteText,
                     "weight": "bold",
-                    "size": "xl",
+                    "size": "lg",
                     "wrap": True,
                     "color": "#2b2a27"
                 },
                 {
                     "type": "text",
-                    "text": quoteAuthor,
+                    "text": "-" + quoteAuthor,
                     "margin": "sm",
                     "color": "#2b2a2a"
                 }
@@ -63,9 +63,9 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                 {
                     "type": "button",
                     "action": {
-                        "type": "postback",
+                        "type": "message",
                         "label": "Kirim Quote Lagi",
-                        "data": "qotd"
+                        "text": "qotd"
                     },
                     "position": "relative",
                     "margin": "sm",

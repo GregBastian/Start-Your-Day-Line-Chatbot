@@ -32,10 +32,12 @@ class UserTextResponse:
             event.reply_token,
             TextSendMessage(text="abracadabra",
                             quick_reply=QuickReply(items=[
+                                QuickReplyButton(image_url=QuickReplyIcons.WEATHER_ICON.value,
+                                                 action=LocationAction(label="Send Location")),
                                  QuickReplyButton(image_url=QuickReplyIcons.WEATHER_ICON.value,
                                                   action=MessageAction(label="Today's Weather", text="weather")),
                                 QuickReplyButton(image_url=QuickReplyIcons.QOTD_ICON.value,
-                                                 action=MessageAction(label="QOTD", text="qotd"))
+                                                 action=MessageAction(label="QOTD", text="qotd")),
                             ]))
         )
 
@@ -46,7 +48,8 @@ class UserTextResponse:
     def message_equals_default(self, event, line_bot_api):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage("not sure what you're saying there :|")
+            TextSendMessage("Aku kurang paham maksudmu. Coba ketik perintah lain dan pastikan perintah dimulai dengan "
+                            "simbol '!' (contohnya: '!help'")
         )
 
 

@@ -16,6 +16,7 @@ QUICK_REPLY_ICONS = {
 class ExternalUrlApis(Enum):
     QOTD_QUOTES_URL = "https://type.fit/api/quotes"
     QOTD_IMG_URL = "https://picsum.photos/500/350"
+    OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&appid={}"
 
 
 class QuickReplyIcons(Enum):
@@ -24,3 +25,4 @@ class QuickReplyIcons(Enum):
 
 
 ADMIN_ID = os.getenv("ADMIN_ID", "")
+OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY", "")
