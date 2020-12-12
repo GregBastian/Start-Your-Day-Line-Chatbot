@@ -14,6 +14,7 @@ from line_bot_app.source_handlers.user_handler.flex_message_response.user_flex_m
 
 def user_message_event_handler_function(event, line_bot_api, message=""):
     if message.startswith("!"):
+        message = message[1:]
         if message == "admin" or message == "sudo su":
             # return TEXT message
             user_text_response_obj.message_equals_admin(event, line_bot_api)
