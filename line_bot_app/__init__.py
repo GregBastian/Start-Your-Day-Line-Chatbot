@@ -17,6 +17,13 @@ def create_app(line_bot_api, handler):
 
     logging.basicConfig(level=logging.INFO)
 
+    @app.route("/test")
+    def homepage_test():
+        return {
+            "message": "Hello World",
+            "type": "json"
+        }
+
     @app.route("/callback", methods=['POST'])
     def callback():
         # get X-Line-Signature header value
