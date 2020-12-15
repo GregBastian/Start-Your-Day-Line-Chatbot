@@ -17,8 +17,6 @@ def create_app(line_bot_api, handler):
 
     logging.basicConfig(level=logging.INFO)
 
-    from line_bot_app.source_handlers.user_handler import user_text_message_event_handlers
-
     @app.route("/callback", methods=['POST'])
     def callback():
         # get X-Line-Signature header value
@@ -33,24 +31,40 @@ def create_app(line_bot_api, handler):
             abort(400)
         return 'OK'
 
+    from line_bot_app.handlers_by_source_type.user_handler.user_text_message_handlers import \
+        user_text_message_event_handlers_obj
+
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
         message = str(event.message.text).lower()
         if isinstance(event.source, SourceUser):
-            app.logger.info(f"Received SourceUser text message in  from id '{event.source.user_id}'")
-            user_text_message_event_handlers.user_message_event_handler_function(event, line_bot_api, message)
+            app.logger.info(f"Received TextMessage from SourceUser with id '{event.source.user_id}'")
+            user_text_message_event_handlers_obj.user_text_message_handler_function(event, line_bot_api, message)
 
         elif isinstance(event.source, SourceGroup):
-            app.logger.info(f"Received SourceGroup text message in from id '{event.source.user_id}'")
+            app.logger.info(f"Received TextMessage from SourceGroup with id '{event.source.user_id}'")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage("Feature is not implemented yet")
             )
         elif isinstance(event.source, SourceRoom):
-            app.logger.info(f"Received SourceRoom text message in from id '{event.source.user_id}'")
+            app.logger.info(f"Received TextMessage from SourceRoom with id '{event.source.user_id}'")
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage("Feature is not implemented yet")
             )
+
+    from line_bot_app.handlers_by_source_type.user_handler.user_location_message_handlers import \
+        user_location_message_event_handlers_obj
+
+    @handler.add(MessageEvent, message=LocationMessage)
+    def location_handler_general(event):
+        if isinstance(event.source, SourceUser):
+            app.logger.info(f"Received SourceUser text message in  from id '{event.source.user_id}'")
+            user_location_message_event_handlers_obj.user_location_message_handler_function(event, line_bot_api)
+        else:
+            app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'")
+            app.logger.info(f"Will not reply because LocationMessages from {event.source} will not be handled'")
+            pass
 
     return app

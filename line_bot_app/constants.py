@@ -16,7 +16,9 @@ QUICK_REPLY_ICONS = {
 class ExternalUrlApis(Enum):
     QOTD_QUOTES_URL = "https://type.fit/api/quotes"
     QOTD_IMG_URL = "https://picsum.photos/500/350"
-    OPENWEATHER_URL = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&appid={}"
+    OPENWEATHER_API_URL = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&appid={}&exclude=current," \
+                          "minutely,daily,alert&unit=metric"
+    OPENWEATHER_ICON_URL = "https://openweathermap.org/img/wn/{}@2x.png"
 
 
 class QuickReplyIcons(Enum):

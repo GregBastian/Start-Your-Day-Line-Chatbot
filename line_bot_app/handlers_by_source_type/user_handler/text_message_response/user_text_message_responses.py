@@ -8,7 +8,9 @@ Created on 09/12/2020
 
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons, ADMIN_ID
+from line_bot_app.constants import QuickReplyIcons
+
+from line_bot_app.constants import ADMIN_ID
 
 
 class UserTextResponse:
@@ -41,7 +43,7 @@ class UserTextResponse:
                             ]))
         )
 
-    def message_equals_devnews(self, event, line_bot_api):
+    def message_equals_dev(self, event, line_bot_api):
         pass
 
 
