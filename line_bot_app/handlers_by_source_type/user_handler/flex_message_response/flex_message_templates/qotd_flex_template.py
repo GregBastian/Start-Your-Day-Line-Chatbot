@@ -44,7 +44,7 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
                 },
                 {
                     "type": "text",
-                    "text": "-" + quoteAuthor,
+                    "text": "~" + quoteAuthor + "~",
                     "margin": "sm",
                     "color": "#2b2a2a"
                 }
