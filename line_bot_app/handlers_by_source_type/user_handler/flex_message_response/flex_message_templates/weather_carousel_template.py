@@ -39,7 +39,7 @@ def get_weather_carousel_message(imageUrl="", quoteText="", quoteAuthor=""):
                     "contents": [
                         {
                             "type": "text",
-                            "text": "Temp: 25°C",
+                            "text": "Temp: 25C",
                             "color": "#2b2a27",
                             "align": "center",
                             "margin": "md"
@@ -51,7 +51,7 @@ def get_weather_carousel_message(imageUrl="", quoteText="", quoteAuthor=""):
                         },
                         {
                             "type": "text",
-                            "text": "Real Feel: 22°C",
+                            "text": "Real Feel: 22C",
                             "margin": "md",
                             "align": "center",
                             "color": "#2b2a27"
