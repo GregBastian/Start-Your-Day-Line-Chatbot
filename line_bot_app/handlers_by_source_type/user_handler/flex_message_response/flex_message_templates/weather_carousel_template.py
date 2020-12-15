@@ -9,7 +9,6 @@ Created on 15/12/2020
 
 def get_weather_carousel_message(imageUrl="", quoteText="", quoteAuthor=""):
     return {
-        "alt_text": "lol",
         "type": "carousel",
         "contents": [
             {

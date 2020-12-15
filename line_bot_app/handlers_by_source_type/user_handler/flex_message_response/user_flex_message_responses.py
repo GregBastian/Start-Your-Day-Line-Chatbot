@@ -39,13 +39,17 @@ class UserFlexResponse:
     def location_equals_received_location(self, event, line_bot_api):
         userLat = event.message.latitude
         userLong = event.message.longitude
-        weatherDataHourly = requests.get(ExternalUrlApis.OPENWEATHER_API_URL.value.format(userLat, userLong, OPENWEATHER_API_KEY)).json()
-        template_message = TemplateSendMessage(
-            alt_text='Carousel alt text', template=get_weather_carousel_message())
-        line_bot_api.reply_message(event.reply_token, template_message)
+        weatherDataHourly = requests.get(
+            ExternalUrlApis.OPENWEATHER_API_URL.value.format(userLat, userLong, OPENWEATHER_API_KEY)).json()
 
+        template_message = FlexSendMessage(
+            alt_text='Carousel alt text', contents=get_weather_carousel_message())
 
-
+        line_bot_api.reply_message(
+            event.reply_token,
+            FlexSendMessage(
+                alt_text='Carousel alt text', contents=get_weather_carousel_message())
+        )
 
 
 user_flex_response_obj = UserFlexResponse()
