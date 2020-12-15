@@ -17,7 +17,7 @@ class ExternalUrlApis(Enum):
     QOTD_QUOTES_URL = "https://type.fit/api/quotes"
     QOTD_IMG_URL = "https://picsum.photos/500/350"
     OPENWEATHER_API_URL = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&appid={}&exclude=current," \
-                          "minutely,daily,alert&unit=metric"
+                          "minutely,daily,alert&units=metric"
     OPENWEATHER_ICON_URL = "https://openweathermap.org/img/wn/{}@2x.png"
 
 
