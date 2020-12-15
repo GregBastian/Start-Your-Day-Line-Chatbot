@@ -60,7 +60,7 @@ def create_app(line_bot_api, handler):
     @handler.add(MessageEvent, message=LocationMessage)
     def location_handler_general(event):
         if isinstance(event.source, SourceUser):
-            app.logger.info(f"Received SourceUser text message in  from id '{event.source.user_id}'")
+            app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'")
             user_location_message_event_handlers_obj.user_location_message_handler_function(event, line_bot_api)
         else:
             app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'")

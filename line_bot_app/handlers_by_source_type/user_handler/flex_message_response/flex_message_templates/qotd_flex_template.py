@@ -1,6 +1,11 @@
 # some future comment
 
-def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
+import random
+
+
+def get_qotd_flex_message(quotesAndAuthors="", imageUrl="", quoteText="", quoteAuthor=""):
+    randomEntryInResponse = random.choice(quotesAndAuthors)
+    quoteText, quoteAuthor = randomEntryInResponse.get("text", ""), randomEntryInResponse.get("author", "")
     return {
         "type": "bubble",
         "size": "kilo",
@@ -77,3 +82,4 @@ def get_qotd_flex_message(imageUrl="", quoteText="", quoteAuthor=""):
             "flex": 0
         }
     }
+
