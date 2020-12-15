@@ -40,10 +40,11 @@ class UserFlexResponse:
         weatherDataHourly = requests.get(
             ExternalUrlApis.OPENWEATHER_API_URL.value.format(userLat, userLong, OPENWEATHER_API_KEY)).json()
 
+        timeNow = weatherDataHourly["timezone_offset"] + weatherDataHourly["hourly"][0]["dt"]
         line_bot_api.reply_message(
             event.reply_token, [
                 TextSendMessage(text=f"Data disediakan oleh OpenWeather (https://openweathermap.org/)\n"
-                                     f"Waktu Sekarang adalah: {datetime.utcfromtimestamp().strftime('%d-%m-%Y %H:%M')}"),
+                                     f"Waktu Sekarang adalah: {datetime.utcfromtimestamp(timeNow).strftime('%d-%m-%Y %H:%M')}"),
                 FlexSendMessage(alt_text='Weather Report', contents=get_weather_carousel_message(weatherDataHourly)),
             ]
         )
