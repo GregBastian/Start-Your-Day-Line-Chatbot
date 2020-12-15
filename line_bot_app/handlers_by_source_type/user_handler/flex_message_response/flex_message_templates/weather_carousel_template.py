@@ -82,8 +82,11 @@ def get_weather_bubble_message(displayTime="", weatherIconCode="", temp="", real
 def get_weather_carousel_message(weatherDataHourly={}):
     bubbleContents = []
     timezoneOffset = weatherDataHourly["timezone_offset"]
-    for data in weatherDataHourly["hourly"][:20:2]:
-        time = datetime.utcfromtimestamp(data["dt"]+timezoneOffset).strftime('%H:%M')
+    for index, data in enumerate(weatherDataHourly["hourly"][:20:2]):
+        if index == 0:
+            time = "Now"
+        else:
+            time = datetime.utcfromtimestamp(data["dt"]+timezoneOffset).strftime('%H:%M')
         temp = str(data["temp"]) + "°C"
         realFeelTemp = str(data["feels_like"]) + "°C"
         weatherDesc, weatherIcon = data["weather"][0]["description"], data["weather"][0]["icon"]
@@ -94,7 +97,7 @@ def get_weather_carousel_message(weatherDataHourly={}):
         "contents": bubbleContents
     }
 
-    # return {
+    # {
     #     "type": "carousel",
     #     "contents": [
     #         {
@@ -124,10 +127,11 @@ def get_weather_carousel_message(weatherDataHourly={}):
     #                 "contents": [
     #                     {
     #                         "type": "text",
-    #                         "text": "Temp: 25C",
+    #                         "text": "Temp: 25°C",
     #                         "color": "#2b2a27",
     #                         "align": "center",
-    #                         "margin": "md"
+    #                         "margin": "md",
+    #                         "size": "lg"
     #                     },
     #                     {
     #                         "type": "separator",
@@ -136,7 +140,7 @@ def get_weather_carousel_message(weatherDataHourly={}):
     #                     },
     #                     {
     #                         "type": "text",
-    #                         "text": "Real Feel: 22C",
+    #                         "text": "Real Feel: 22°C",
     #                         "margin": "md",
     #                         "align": "center",
     #                         "color": "#2b2a27"
@@ -152,275 +156,7 @@ def get_weather_carousel_message(weatherDataHourly={}):
     #                         "align": "center",
     #                         "color": "#2b2a27",
     #                         "margin": "md",
-    #                         "wrap": True
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b",
-    #                 "margin": "none"
-    #             },
-    #             "styles": {
-    #                 "hero": {
-    #                     "backgroundColor": "#9bb1fa"
-    #                 }
-    #             }
-    #         },
-    #         {
-    #             "type": "bubble",
-    #             "size": "micro",
-    #             "header": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Now",
-    #                         "weight": "bold",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b"
-    #             },
-    #             "hero": {
-    #                 "type": "image",
-    #                 "url": "https://openweathermap.org/img/wn/02d@2x.png"
-    #             },
-    #             "body": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Temp: 25C",
-    #                         "color": "#2b2a27",
-    #                         "align": "center",
-    #                         "margin": "md"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "none"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Real Feel: 22C",
-    #                         "margin": "md",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "sm"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "heavy intensity rain",
-    #                         "align": "center",
-    #                         "color": "#2b2a27",
-    #                         "margin": "md",
-    #                         "wrap": True
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b",
-    #                 "margin": "none"
-    #             },
-    #             "styles": {
-    #                 "hero": {
-    #                     "backgroundColor": "#9bb1fa"
-    #                 }
-    #             }
-    #         },
-    #         {
-    #             "type": "bubble",
-    #             "size": "micro",
-    #             "header": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Now",
-    #                         "weight": "bold",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b"
-    #             },
-    #             "hero": {
-    #                 "type": "image",
-    #                 "url": "https://openweathermap.org/img/wn/02d@2x.png"
-    #             },
-    #             "body": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Temp: 25C",
-    #                         "color": "#2b2a27",
-    #                         "align": "center",
-    #                         "margin": "md"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "none"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Real Feel: 22C",
-    #                         "margin": "md",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "sm"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "heavy intensity rain",
-    #                         "align": "center",
-    #                         "color": "#2b2a27",
-    #                         "margin": "md",
-    #                         "wrap": True
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b",
-    #                 "margin": "none"
-    #             },
-    #             "styles": {
-    #                 "hero": {
-    #                     "backgroundColor": "#9bb1fa"
-    #                 }
-    #             }
-    #         },
-    #         {
-    #             "type": "bubble",
-    #             "size": "micro",
-    #             "header": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Now",
-    #                         "weight": "bold",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b"
-    #             },
-    #             "hero": {
-    #                 "type": "image",
-    #                 "url": "https://openweathermap.org/img/wn/02d@2x.png"
-    #             },
-    #             "body": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Temp: 25C",
-    #                         "color": "#2b2a27",
-    #                         "align": "center",
-    #                         "margin": "md"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "none"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Real Feel: 22C",
-    #                         "margin": "md",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "sm"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "heavy intensity rain",
-    #                         "align": "center",
-    #                         "color": "#2b2a27",
-    #                         "margin": "md",
-    #                         "wrap": True
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b",
-    #                 "margin": "none"
-    #             },
-    #             "styles": {
-    #                 "hero": {
-    #                     "backgroundColor": "#9bb1fa"
-    #                 }
-    #             }
-    #         },
-    #         {
-    #             "type": "bubble",
-    #             "size": "micro",
-    #             "header": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Now",
-    #                         "weight": "bold",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     }
-    #                 ],
-    #                 "backgroundColor": "#ffd42b"
-    #             },
-    #             "hero": {
-    #                 "type": "image",
-    #                 "url": "https://openweathermap.org/img/wn/02d@2x.png"
-    #             },
-    #             "body": {
-    #                 "type": "box",
-    #                 "layout": "vertical",
-    #                 "contents": [
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Temp: 25C",
-    #                         "color": "#2b2a27",
-    #                         "align": "center",
-    #                         "margin": "md"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "none"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "Real Feel: 22C",
-    #                         "margin": "md",
-    #                         "align": "center",
-    #                         "color": "#2b2a27"
-    #                     },
-    #                     {
-    #                         "type": "separator",
-    #                         "color": "#2b2a27",
-    #                         "margin": "sm"
-    #                     },
-    #                     {
-    #                         "type": "text",
-    #                         "text": "heavy intensity rain",
-    #                         "align": "center",
-    #                         "color": "#2b2a27",
-    #                         "margin": "md",
-    #                         "wrap": True
+    #                         "wrap": true
     #                     }
     #                 ],
     #                 "backgroundColor": "#ffd42b",
