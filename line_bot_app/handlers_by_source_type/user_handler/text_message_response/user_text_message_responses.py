@@ -29,29 +29,30 @@ class UserTextResponse:
                 TextSendMessage(f"Tolong {profile.display_name}! Jangan berpura-pura jadi admin")
             )
 
-    def message_equals_p(self, event, line_bot_api):
+    def message_equals_weather(self, event, line_bot_api):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="abracadabra",
+            TextSendMessage(text="Silahkan mengirimkan lokasi dengan menekan tombol dibawah untuk mendapatkan laporan "
+                                 "cuaca terkini",
                             quick_reply=QuickReply(items=[
-                                QuickReplyButton(image_url=QuickReplyIcons.WEATHER_ICON.value,
+                                QuickReplyButton(image_url=QuickReplyIcons.PIN_ICON.value,
                                                  action=LocationAction(label="Send Location")),
-                                 QuickReplyButton(image_url=QuickReplyIcons.WEATHER_ICON.value,
-                                                  action=MessageAction(label="Today's Weather", text="weather")),
-                                QuickReplyButton(image_url=QuickReplyIcons.QOTD_ICON.value,
-                                                 action=MessageAction(label="QOTD", text="qotd")),
+                                QuickReplyButton(image_url=QuickReplyIcons.CANCEL_ICON.value,
+                                                 action=MessageAction(label="Cancel", text=""))
                             ]))
         )
 
     def message_equals_dev(self, event, line_bot_api):
         pass
 
+    def message_quals_help(self, event, line_bot_api):
+        pass
 
     def message_equals_default(self, event, line_bot_api):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage("Aku kurang paham maksudmu. Coba ketik perintah lain dan pastikan perintah dimulai dengan "
-                            "simbol '!' (contohnya: '!help'")
+            TextSendMessage("Aku kurang paham maksudmu. Coba ketik 'help' untuk melihat semua perintah "
+                            "yang aku pahami :)")
         )
 
 

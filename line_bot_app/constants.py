@@ -23,6 +23,8 @@ class ExternalUrlApis(Enum):
 
 class QuickReplyIcons(Enum):
     WEATHER_ICON = "https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png"
+    PIN_ICON = "https://img.icons8.com/color/48/000000/map-pin.png"
+    CANCEL_ICON = "https://img.icons8.com/color/48/000000/cancel--v1.png"
     QOTD_ICON = "https://img.icons8.com/flat_round/64/000000/quote.png"
 
 

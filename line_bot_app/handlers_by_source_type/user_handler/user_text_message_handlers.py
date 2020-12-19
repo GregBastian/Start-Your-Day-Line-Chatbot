@@ -22,12 +22,15 @@ class UserTextMessageHandlers:
             # returns FLEX message
             user_flex_response_obj.message_equals_qotd(event, line_bot_api)
 
-        elif message == "p":
+        elif message == "weather":
             # returns TEXT message
-            user_text_response_obj.message_equals_p(event, line_bot_api)
+            user_text_response_obj.message_equals_weather(event, line_bot_api)
 
         elif message == "subscribe":
             pass
+        
+        elif message == "help":
+            user_text_response_obj.message_equals_help(event, line_bot_api)
 
         else:
             user_text_response_obj.message_equals_default(event, line_bot_api)
