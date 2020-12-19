@@ -74,4 +74,10 @@ def create_app(line_bot_api, handler):
             app.logger.info(f"Will not reply because LocationMessages from {event.source} will not be handled'")
             pass
 
+    @handler.default()
+    def default(event):
+        pass
+
     return app
+
+
