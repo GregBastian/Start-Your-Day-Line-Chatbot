@@ -23,7 +23,7 @@ class UserTextMessageHandlers:
             user_flex_response_obj.message_equals_qotd(event, line_bot_api)
 
         elif message == "weather":
-            # returns TEXT message
+            # returns TEXT message and QUICK REPLY
             user_text_response_obj.message_equals_weather(event, line_bot_api)
 
         elif message == "subscribe":
