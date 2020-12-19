@@ -38,7 +38,7 @@ class UserTextResponse:
                                 QuickReplyButton(image_url=QuickReplyIcons.PIN_ICON.value,
                                                  action=LocationAction(label="Send Location")),
                                 QuickReplyButton(image_url=QuickReplyIcons.CANCEL_ICON.value,
-                                                 action=MessageAction(label="Cancel", text="\n"))
+                                                 action=PostbackAction(label="Cancel", data="dummy_data"))
                             ]))
         )
 
