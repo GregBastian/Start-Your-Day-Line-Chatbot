@@ -27,7 +27,7 @@ class UserTextMessageHandlers:
             user_text_response_obj.message_equals_weather(event, line_bot_api)
 
         elif message == "troll me":
-            user_text_response_obj.message_quals_troll_me(event, line_bot_api)
+            user_text_response_obj.message_equals_troll_me(event, line_bot_api)
         
         elif message == "help":
             user_text_response_obj.message_equals_help(event, line_bot_api)
