@@ -13,6 +13,10 @@ QUICK_REPLY_ICONS = {
 }
 
 
+class ExternalUrls(Enum):
+    TROLL_YT_VIDEO = "https://www.youtube.com/watch?v=cqF6M25kqq4"
+
+
 class ExternalUrlApis(Enum):
     QOTD_QUOTES_URL = "https://type.fit/api/quotes"
     QOTD_IMG_URL = "https://picsum.photos/500/350"

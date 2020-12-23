@@ -8,9 +8,7 @@ Created on 09/12/2020
 
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons
-
-from line_bot_app.constants import ADMIN_ID
+from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls
 
 
 class UserTextResponse:
@@ -36,17 +34,15 @@ class UserTextResponse:
                                  "cuaca terkini",
                             quick_reply=QuickReply(items=[
                                 QuickReplyButton(image_url=QuickReplyIcons.PIN_ICON.value,
-                                                 action=LocationAction(label="Send Location")),
-                                QuickReplyButton(image_url=QuickReplyIcons.CANCEL_ICON.value,
-                                                 action=PostbackAction(label="Cancel", data="dummy_data"))
+                                                 action=LocationAction(label="Send Location"))
                             ]))
         )
 
-    def message_equals_dev(self, event, line_bot_api):
-        pass
-
-    def message_quals_help(self, event, line_bot_api):
-        pass
+    def message_equals_troll_me(self, event, line_bot_api):
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(ExternalUrls.TROLL_YT_VIDEO.value)
+        )
 
     def message_equals_default(self, event, line_bot_api):
         line_bot_api.reply_message(

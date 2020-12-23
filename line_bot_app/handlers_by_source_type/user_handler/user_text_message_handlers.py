@@ -18,16 +18,16 @@ class UserTextMessageHandlers:
             # return TEXT message
             user_text_response_obj.message_equals_admin(event, line_bot_api)
 
-        elif message == "qotd":
+        elif message == "quote":
             # returns FLEX message
-            user_flex_response_obj.message_equals_qotd(event, line_bot_api)
+            user_flex_response_obj.message_equals_quote(event, line_bot_api)
 
         elif message == "weather":
             # returns TEXT message and QUICK REPLY
             user_text_response_obj.message_equals_weather(event, line_bot_api)
 
-        elif message == "subscribe":
-            pass
+        elif message == "troll me":
+            user_text_response_obj.message_quals_troll_me(event, line_bot_api)
         
         elif message == "help":
             user_text_response_obj.message_equals_help(event, line_bot_api)

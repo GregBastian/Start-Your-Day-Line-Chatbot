@@ -3,7 +3,7 @@
 import random
 
 
-def get_qotd_flex_message(quotesAndAuthors="", imageUrl="", quoteText="", quoteAuthor=""):
+def get_quote_flex_message(quotesAndAuthors="", imageUrl="", quoteText="", quoteAuthor=""):
     randomEntryInResponse = random.choice(quotesAndAuthors)
     quoteText, quoteAuthor = randomEntryInResponse.get("text", ""), randomEntryInResponse.get("author", "")
     return {

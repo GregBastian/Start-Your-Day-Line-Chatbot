@@ -87,9 +87,10 @@ def get_weather_carousel_message(weatherDataHourly={}):
             time = "Now"
         else:
             time = datetime.utcfromtimestamp(data["dt"]+timezoneOffset).strftime('%H:%M')
-        temp = str(data["temp"]) + "°C"
-        realFeelTemp = str(data["feels_like"]) + "°C"
-        weatherDesc, weatherIcon = data["weather"][0]["description"], data["weather"][0]["icon"]
+        temp = str(round(data["temp"])) + "°C"
+        realFeelTemp = str(round(data["feels_like"])) + "°C"
+        weatherDesc = data["weather"][0]["description"]
+        weatherIcon = data["weather"][0]["icon"]
         bubbleContents.append(get_weather_bubble_message(time, weatherIcon, temp, realFeelTemp, weatherDesc))
 
     return {

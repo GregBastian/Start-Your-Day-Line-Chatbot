@@ -70,13 +70,13 @@ def create_app(line_bot_api, handler):
             app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'")
             user_location_message_event_handlers_obj.user_location_message_handler_function(event, line_bot_api)
         else:
-            app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'")
-            app.logger.info(f"Will not reply because LocationMessages from {event.source} will not be handled'")
+            app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'. "
+                            f"App will not reply because LocationMessages from {event.source} will not be handled'")
             pass
 
     @handler.default()
     def default(event):
-        pass
+        app.logger.info(f"Received Unhandled response from {event.source} with id '{event.source.user_id}'")
 
     return app
 
