@@ -10,6 +10,8 @@ from linebot.models import *
 
 from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls
 
+import requests
+
 
 class UserTextResponse:
     def message_equals_admin(self, event, line_bot_api):

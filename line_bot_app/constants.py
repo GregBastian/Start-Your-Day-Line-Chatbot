@@ -15,6 +15,8 @@ QUICK_REPLY_ICONS = {
 
 class ExternalUrls(Enum):
     TROLL_YT_VIDEO = "https://www.youtube.com/watch?v=cqF6M25kqq4"
+    RANDOM_DOG_GENERATOR = "https://random.dog/woof.json"
+    RANDOM_CAT_GENERATOR = "https://aws.random.cat/meow"
 
 
 class ExternalUrlApis(Enum):
