@@ -36,7 +36,7 @@ class UserTextMessageHandlers:
             if message.endswith("cat"):
                 user_image_response_obj.message_startswith_random_and_endswith_cat(event, line_bot_api)
             elif message.endswith("dog"):
-                pass
+                user_image_response_obj.message_startswith_random_and_endswith_dog(event, line_bot_api)
         
         elif message == "help":
             user_text_response_obj.message_equals_help(event, line_bot_api)
