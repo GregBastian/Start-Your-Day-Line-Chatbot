@@ -18,19 +18,19 @@ from line_bot_app.constants import AcceptedTextMessages
 
 class UserTextMessageHandlers:
     def user_text_message_handler_function(self, event, line_bot_api, message=""):
-        if AcceptedTextMessages.ADMIN.value or message == AcceptedTextMessages.SUDO_SU.value:
+        if message == AcceptedTextMessages.ADMIN.value or message == AcceptedTextMessages.SUDO_SU.value:
             # return TEXT message
             image_responses_obj.message_equals_admin(event, line_bot_api)
 
-        elif AcceptedTextMessages.QUOTE.value:
+        elif message == AcceptedTextMessages.QUOTE.value:
             # returns FLEX message
             flex_responses_obj.message_equals_quote(event, line_bot_api)
 
-        elif AcceptedTextMessages.WEATHER.value:
+        elif message == AcceptedTextMessages.WEATHER.value:
             # returns TEXT message and QUICK REPLY
             image_responses_obj.message_equals_weather(event, line_bot_api)
 
-        elif AcceptedTextMessages.TROLL_ME.value:
+        elif message == AcceptedTextMessages.TROLL_ME.value:
             # return TEXT message
             image_responses_obj.message_equals_troll_me(event, line_bot_api)
 
@@ -40,7 +40,7 @@ class UserTextMessageHandlers:
             elif message == AcceptedTextMessages.DOG.value:
                 user_image_response_obj.message_equals_dog(event, line_bot_api)
         
-        elif AcceptedTextMessages.HELP.value:
+        elif message == AcceptedTextMessages.HELP.value:
             image_responses_obj.message_equals_help(event, line_bot_api)
 
         else:
