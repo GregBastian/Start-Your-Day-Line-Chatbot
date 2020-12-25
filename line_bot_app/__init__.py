@@ -24,7 +24,7 @@ def create_app(line_bot_api, handler):
             "type": "json"
         }
 
-    @app.route("/callback", methods=['POST'])
+    @app.route("/webhook", methods=['POST'])
     def callback():
         # get X-Line-Signature header value
         signature = request.headers['X-Line-Signature']

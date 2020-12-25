@@ -13,7 +13,7 @@ from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls, Acce
 import difflib
 
 
-class ImageResponses:
+class TextResponses:
     def message_equals_admin(self, event, line_bot_api):
         idSender = event.source.user_id
         profile = line_bot_api.get_profile(idSender)
@@ -45,7 +45,7 @@ class ImageResponses:
             TextSendMessage(ExternalUrls.TROLL_YT_VIDEO.value)
         )
 
-    def message_equals_default(self, event, line_bot_api):
+    def fallback_message(self, event, line_bot_api):
         message = event.message.text
         acceptedMessages = AcceptedTextMessages.values2list()
         closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
@@ -65,4 +65,4 @@ class ImageResponses:
             pass
 
 
-image_responses_obj = ImageResponses()
+text_responses_obj = TextResponses()
