@@ -34,5 +34,24 @@ class QuickReplyIcons(Enum):
     QOTD_ICON = "https://img.icons8.com/flat_round/64/000000/quote.png"
 
 
+class AcceptedTextMessages(Enum):
+    ADMIN = "admin"
+    SUDO_SU = "sudo su"
+    QUOTE = "quote"
+    WEATHER = "weather"
+    TROLL_ME = "troll me"
+    CAT = "cat"
+    DOG = "dog"
+    HELP = "help"
+
+    @staticmethod
+    def names2list():
+        return list(map(lambda c: c.name, AcceptedTextMessages))
+
+    @staticmethod
+    def values2list():
+        return list(map(lambda c: c.value, AcceptedTextMessages))
+
+
 ADMIN_ID = os.getenv("ADMIN_ID", "")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY", "")

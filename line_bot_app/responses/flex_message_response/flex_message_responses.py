@@ -16,14 +16,14 @@ from line_bot_app.constants import ExternalUrlApis
 # for constant singular values like API keys
 from line_bot_app.constants import OPENWEATHER_API_KEY
 
-from line_bot_app.handlers_by_source_type.user_handler.flex_message_response.flex_message_templates.quote_flex_template \
+from line_bot_app.responses.flex_message_response.flex_message_templates.quote_flex_template \
     import get_quote_flex_message
 
-from line_bot_app.handlers_by_source_type.user_handler.flex_message_response.flex_message_templates.weather_carousel_template \
+from line_bot_app.responses.flex_message_response.flex_message_templates.weather_carousel_template \
     import get_weather_carousel_message
 
 
-class UserFlexResponse:
+class FlexResponses:
 
     def message_equals_quote(self, event, line_bot_api):
         image = (requests.get(ExternalUrlApis.QOTD_IMG_URL.value)).url
@@ -51,4 +51,4 @@ class UserFlexResponse:
         )
 
 
-user_flex_response_obj = UserFlexResponse()
+flex_responses_obj = FlexResponses()

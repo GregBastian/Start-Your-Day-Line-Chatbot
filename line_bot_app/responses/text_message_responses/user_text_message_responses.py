@@ -8,12 +8,12 @@ Created on 09/12/2020
 
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls
+from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls, AcceptedTextMessages
 
-import requests
+import difflib
 
 
-class UserTextResponse:
+class ImageResponses:
     def message_equals_admin(self, event, line_bot_api):
         idSender = event.source.user_id
         profile = line_bot_api.get_profile(idSender)
@@ -23,10 +23,9 @@ class UserTextResponse:
                 TextSendMessage(f"Halo Tuan {profile.display_name}! Ada yang bisa saya bantu?")
             )
         else:
-            profile = line_bot_api.get_profile(idSender)
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Tolong {profile.display_name}! Jangan berpura-pura jadi admin")
+                TextSendMessage(f"Tolong ya {profile.display_name}... Jangan berpura-pura jadi admin")
             )
 
     def message_equals_weather(self, event, line_bot_api):
@@ -47,11 +46,23 @@ class UserTextResponse:
         )
 
     def message_equals_default(self, event, line_bot_api):
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage("Aku kurang paham maksudmu. Coba ketik 'help' untuk melihat semua perintah "
-                            "yang aku pahami :)")
-        )
+        message = event.message.text
+        acceptedMessages = AcceptedTextMessages.values2list()
+        closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
+
+        if len(closestMatch) == 1:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(f"Mungkin maksudmu {closestMatch[0]}?\n\n"
+                                "Coba ketik 'help' untuk melihat semua perintah yang aku pahami.")
+            )
+        else:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage("Aku kurang paham maksudmu. Coba ketik 'help' untuk melihat semua perintah "
+                                "yang aku pahami.")
+            )
+            pass
 
 
-user_text_response_obj = UserTextResponse()
+image_responses_obj = ImageResponses()

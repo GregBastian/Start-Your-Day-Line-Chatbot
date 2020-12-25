@@ -14,8 +14,9 @@ import requests
 
 
 class UserImageResponse:
-    def message_startswith_random_and_endswith_cat(self, event, line_bot_api):
+    def message_equals_cat(self, event, line_bot_api):
         while True:
+            # put into loop because sometimes the requested media can be a video
             media = requests.get(ExternalUrls.RANDOM_CAT_GENERATOR.value).json()['file']
             if media.lower().endswith(('.png', '.jpg', '.jpeg')):
                 line_bot_api.reply_message(
@@ -24,8 +25,9 @@ class UserImageResponse:
                 )
                 break
 
-    def message_startswith_random_and_endswith_dog(self, event, line_bot_api):
+    def message_equals_dog(self, event, line_bot_api):
         while True:
+            # put into loop because sometimes the requested media can be a video
             media = requests.get(ExternalUrls.RANDOM_DOG_GENERATOR.value).json()['url']
             if media.lower().endswith(('.png', '.jpg', '.jpeg')):
                 line_bot_api.reply_message(
