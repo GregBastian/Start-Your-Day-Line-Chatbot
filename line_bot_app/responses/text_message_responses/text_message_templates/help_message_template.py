@@ -11,7 +11,7 @@ class HelpMessageUtil:
     def help_message_user(self, userDisplayName="USER_NAME"):
         return f"Hello, {userDisplayName}!\n" \
                "I can help brighten up your day, write these commands (or use the menu) so I " \
-               "can help brighten up your day:\n" \
+               "can start your day off properly:\n" \
                "1. 'quote' (Get Random Quote): get a wise quote\n" \
                "2. 'weather' (Get Weather Report): get weather report for the next 18 hours\n" \
                "3. 'troll me' (Troll Me): do i need to explain?\n" \
@@ -21,14 +21,14 @@ class HelpMessageUtil:
 
     def help_message_group(self, groupDisplayName="GROUP_NAME"):
         return f"Hello people of {groupDisplayName}!\n" \
-               "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
+               "I can help brighten up your day, write these commands so I can start your day off properly:\n" \
                "1. '!dog' : start your day with a cute random dog image\n" \
                "2. '!cat' : start your day with an adorable random cat image\n" \
                "3. '!help' : display this message again"
 
     def help_message_room(self, roomDisplayName="ROOM_NAME"):
         return f"Hello people of {roomDisplayName}!\n" \
-               "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
+               "I can help brighten up your day, write these commands so I can start your day off properly:\n" \
                "1. '!dog' : start your day with a cute random dog image\n" \
                "2. '!cat' : start your day with an adorable random cat image\n" \
                "3. '!help' : display this message again"
