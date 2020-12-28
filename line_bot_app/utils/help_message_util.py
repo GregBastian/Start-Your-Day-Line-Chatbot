@@ -9,34 +9,30 @@ Created on 09/12/2020
 
 class HelpMessageUtil:
     def help_message_user(self, userDisplayName="USER_NAME"):
-        return f"""
-        Hello {userDisplayName}!
-        I can help brighten up your day, write these commands (or use the menu) so I can help brighten up your day:
-        1. 'quote' (Get Random Quote): get a wise quote
-        2. 'weather' (Get Weather Report): get weather report for the next 18 hours
-        3. 'troll me' (Troll Me): do i need to explain?
-        4. 'dog' (Get Dog Pic): start your day with a cute random dog image
-        5. 'cat' (Get Cat Pic): start your day with an adorable random cat image
-        6. 'help' (Help): display this message again
-        """
+        return f"Hello {userDisplayName}!\n" \
+               "I can help brighten up your day, write these commands (or use the menu) so I " \
+               "can help brighten up your day:\n" \
+               "1. 'quote' (Get Random Quote): get a wise quote\n" \
+               "2. 'weather' (Get Weather Report): get weather report for the next 18 hours\n" \
+               "3. 'troll me' (Troll Me): do i need to explain?\n" \
+               "4. 'dog' (Get Dog Pic): start your day with a cute random dog image\n" \
+               "5. 'cat' (Get Cat Pic): start your day with an adorable random cat image\n" \
+               "6. 'help' (Help): display this message again"
 
     def help_message_group(self, groupDisplayName="GROUP_NAME"):
-        return f"""
-        Hello people of {groupDisplayName}!
-        I can help brighten up your day, write these commands so I can help brighten up your day:
-        1. '!dog' (Get Dog Pic): start your day with a cute random dog image
-        2. '!cat' (Get Cat Pic): start your day with an adorable random cat image
-        3. '!help' (Help): display this message again
-        """
+        return f"Hello people of {groupDisplayName}!\n" \
+               "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
+               "1. '!dog' (Get Dog Pic): start your day with a cute random dog image\n" \
+               "2. '!cat' (Get Cat Pic): start your day with an adorable random cat image\n" \
+               "3. '!help' (Help): display this message again"
 
     def help_message_room(self, roomDisplayName):
-        return f"""
-        Hello people of {roomDisplayName}!
-        I can help brighten up your day, write these commands so I can help brighten up your day:
-        1. '!dog' (Get Dog Pic): start your day with a cute random dog image
-        2. '!cat' (Get Cat Pic): start your day with an adorable random cat image
-        3. '!help' (Help): display this message again
-        """
+        return f"Hello people of {roomDisplayName}!\n" \
+               "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
+               "1. '!dog' (Get Dog Pic): start your day with a cute random dog image\n" \
+               "2. '!cat' (Get Cat Pic): start your day with an adorable random cat image\n" \
+               "3. '!help' (Help): display this message again"
+
 
 
 help_message_obj = HelpMessageUtil()

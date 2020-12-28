@@ -70,6 +70,7 @@ class TextResponses:
                 TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
                                 "Try typing 'help' too see all the commands which I understand.")
             )
+
         else:
             if isinstance(event.source, SourceGroup) or isinstance(event.source, SourceRoom):
                 helpFormat = "!help"
