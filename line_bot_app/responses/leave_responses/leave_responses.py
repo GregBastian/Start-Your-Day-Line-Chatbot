@@ -15,7 +15,8 @@ class LeaveResponses:
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(f"Goodbye people of {groupInfo.group_name}! I will miss all of you :)"))
-        line_bot_api.leave_group(event.source.group_id)
+
+        line_bot_api.leave_group(event.reply_token, event.source.group_id)
 
 
 leave_response_obj = LeaveResponses()
