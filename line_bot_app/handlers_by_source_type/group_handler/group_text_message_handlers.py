@@ -29,8 +29,5 @@ class GroupTextMessageHandlers:
             # returns TEXT message
             text_responses_obj.message_equals_help(event, line_bot_api)
 
-        elif message in AcceptedGroupTextMessages.values2list():
-            text_responses_obj.group_fallback_message(event, line_bot_api)
-
 
 group_text_message_event_handlers_obj = GroupTextMessageHandlers()

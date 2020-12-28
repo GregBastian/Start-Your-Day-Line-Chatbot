@@ -9,7 +9,7 @@ Created on 09/12/2020
 
 class HelpMessageUtil:
     def help_message_user(self, userDisplayName="USER_NAME"):
-        return f"Hello {userDisplayName}!\n" \
+        return f"Hello, {userDisplayName}!\n" \
                "I can help brighten up your day, write these commands (or use the menu) so I " \
                "can help brighten up your day:\n" \
                "1. 'quote' (Get Random Quote): get a wise quote\n" \

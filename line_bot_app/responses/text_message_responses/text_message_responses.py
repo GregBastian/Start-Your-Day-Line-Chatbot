@@ -52,31 +52,36 @@ class TextResponses:
         )
 
     def message_equals_help(self, event, line_bot_api):
-        idUser = event.source.user_id
-        profile = line_bot_api.get_profile(idUser)
+        if isinstance(event.source, SourceUser):
+            userInfo = line_bot_api.get_profile(event.source.user_id)
+            helpMessage = TextSendMessage(help_message_obj.help_message_user(userInfo.display_name))
+        elif isinstance(event.source, SourceGroup):
+            groupInfo = line_bot_api.get_group_summary(event.source.group_id)
+            helpMessage = TextSendMessage(help_message_obj.help_message_group(groupInfo.group_name))
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(help_message_obj.help_message_user(profile.display_name))
+            helpMessage
         )
 
-    def user_fallback_message(self, event, line_bot_api):
+    def fallback_message(self, event, line_bot_api):
         message = event.message.text
-        acceptedMessages = AcceptedUserTextMessages.values2list()
-        closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
+        closestMatch = difflib.get_close_matches(message, AcceptedUserTextMessages.values2list(), 1, 0.4)
 
         # check if theres anything in the list 'closestMatch'
         if closestMatch:
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(f"Did you mean '{closestMatch[0]}'?\n\n"
-                                f"Try typing '{HELP_FORMAT[0]}' too see all the commands which I understand.")
+                                f"Try typing '{AcceptedUserTextMessages.HELP.value}' too see all the commands which I "
+                                f"understand.")
             )
 
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"I don't understand what you mean. Try typing '{HELP_FORMAT[0]}' too see all the "
-                                f"commands which I understand.")
+                TextSendMessage(f"I don't understand what you mean. Try typing '{AcceptedUserTextMessages.HELP.value}' "
+                                f"too see all the commands which I understand.")
             )
 
     def group_fallback_message(self, event, line_bot_api):

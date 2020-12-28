@@ -63,12 +63,16 @@ def create_app(line_bot_api, handler):
     def join_handler(event):
 
         if isinstance(event.source, SourceGroup):
-            app.logger.info(f"Received event {event} from SourceGroup with id '{event.source.user_id}' "
+            app.logger.info(f"Received event {event} from SourceGroup with id '{event.source.group_id}' "
                             f"at {event.timestamp}")
+            groupInfo = line_bot_api.get_group_summary(event.source.group_id)
+            helpMessage = TextSendMessage(help_message_obj.help_message_group(groupInfo.group_name))
+
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(help_message_obj.help_message_group(event.source.room_id))
+                helpMessage
             )
+
         elif isinstance(event.source, SourceRoom):
             app.logger.info(f"Received event {event} from SourceRoom with id '{event.source.user_id}'"
                             f"at {event.timestamp}")

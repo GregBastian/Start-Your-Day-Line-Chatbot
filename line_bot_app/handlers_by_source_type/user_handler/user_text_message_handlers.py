@@ -47,7 +47,7 @@ class UserTextMessageHandlers:
             text_responses_obj.message_equals_help(event, line_bot_api)
 
         else:
-            text_responses_obj.user_fallback_message(event, line_bot_api)
+            text_responses_obj.fallback_message(event, line_bot_api)
 
 
 user_text_message_event_handlers_obj = UserTextMessageHandlers()
