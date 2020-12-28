@@ -31,7 +31,7 @@ class FlexResponses:
 
         line_bot_api.reply_message(
             event.reply_token,
-            FlexSendMessage(alt_text="flex_message_quote", contents=get_quote_flex_message(quotesAndAuthors, image))
+            FlexSendMessage(alt_text="Random Quote", contents=get_quote_flex_message(quotesAndAuthors, image))
         )
 
     def location_equals_received_location(self, event, line_bot_api):

@@ -8,31 +8,35 @@ Created on 09/12/2020
 
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, ExternalUrls, AcceptedTextMessages
+from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, AcceptedTextMessages, YoutubeTrollUrls
+
+from line_bot_app.utils.help_message_util import help_message_obj
 
 import difflib
+
+import random
 
 
 class TextResponses:
     def message_equals_admin(self, event, line_bot_api):
-        idSender = event.source.user_id
-        profile = line_bot_api.get_profile(idSender)
-        if idSender == ADMIN_ID:
+        idUser = event.source.user_id
+        profile = line_bot_api.get_profile(idUser)
+        if idUser == ADMIN_ID:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Halo Tuan {profile.display_name}! Ada yang bisa saya bantu?")
+                TextSendMessage(f"Hello Master {profile.display_name}! How may I be of service?")
             )
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Tolong ya {profile.display_name}... Jangan berpura-pura jadi admin")
+                TextSendMessage(f"hey {profile.display_name}... don't you dare fake as an admin")
             )
 
     def message_equals_weather(self, event, line_bot_api):
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="Silahkan mengirimkan lokasi dengan menekan tombol dibawah untuk mendapatkan laporan "
-                                 "cuaca terkini",
+            TextSendMessage(text="Please send your location by tapping the button below to get "
+                                 "your weather report.",
                             quick_reply=QuickReply(items=[
                                 QuickReplyButton(image_url=QuickReplyIcons.PIN_ICON.value,
                                                  action=LocationAction(label="Send Location"))
@@ -40,9 +44,18 @@ class TextResponses:
         )
 
     def message_equals_troll_me(self, event, line_bot_api):
+        randomTrollVideoUrl = random.choice(YoutubeTrollUrls.values2list())
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(ExternalUrls.TROLL_YT_VIDEO.value)
+            TextSendMessage(randomTrollVideoUrl)
+        )
+
+    def message_equals_help(self, event, line_bot_api):
+        idUser = event.source.user_id
+        profile = line_bot_api.get_profile(idUser)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(help_message_obj.help_message_user(profile.display_name))
         )
 
     def fallback_message(self, event, line_bot_api):
@@ -50,19 +63,25 @@ class TextResponses:
         acceptedMessages = AcceptedTextMessages.values2list()
         closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
 
-        if len(closestMatch) == 1:
+        # check if theres anything in the list 'closestMatch'
+        if closestMatch:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Mungkin maksudmu {closestMatch[0]}?\n\n"
-                                "Coba ketik 'help' untuk melihat semua perintah yang aku pahami.")
+                TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
+                                "Try typing 'help' too see all the commands which I understand.")
             )
         else:
+            if isinstance(event.source, SourceGroup) or isinstance(event.source, SourceRoom):
+                helpFormat = "!help"
+            else:
+                helpFormat = "help"
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage("Aku kurang paham maksudmu. Coba ketik 'help' untuk melihat semua perintah "
-                                "yang aku pahami.")
+                TextSendMessage(f"I don't understand what you mean. Try typing '{helpFormat}' too see all the commands"
+                                "which I understand.")
             )
-            pass
+
+
 
 
 text_responses_obj = TextResponses()
