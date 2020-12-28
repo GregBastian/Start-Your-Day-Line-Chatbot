@@ -50,10 +50,28 @@ def create_app(line_bot_api, handler):
     def user_follow_event(event):
         idUser = event.source.user_id
         profile = line_bot_api.get_profile(idUser)
+        app.logger.info(f"Received Follow event from {idUser}")
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(help_message_obj.help_message_user(profile.display_name))
         )
+
+    @handler.add(JoinEvent)
+    def join_handler(event):
+        if isinstance(event.source, SourceRoom):
+            app.logger.info(f"Received JoinEvent {event.message.text} from SourceRoom with id '{event.source.user_id}'")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(help_message_obj.help_message_group(event.source.group_id))
+            )
+
+        elif isinstance(event.source, SourceGroup):
+            app.logger.info(
+                f"Received TextMessage {event.message.text} from SourceGroup with id '{event.source.user_id}'")
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(help_message_obj.help_message_group(event.source.room_id))
+            )
 
     @handler.add(MessageEvent, message=TextMessage)
     def text_handler_general(event):
@@ -87,23 +105,6 @@ def create_app(line_bot_api, handler):
         else:
             app.logger.info(f"Received LocationMessage from {event.source} with id '{event.source.user_id}'. "
                             f"App will not reply because LocationMessages from {event.source} will not be handled'")
-
-    @handler.add(JoinEvent)
-    def join_handler(event):
-        if isinstance(event.source, SourceRoom):
-            app.logger.info(f"Received JoinEvent {event.message.text} from SourceRoom with id '{event.source.user_id}'")
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(help_message_obj.help_message_group(event.source.group_id))
-            )
-
-        elif isinstance(event.source, SourceGroup):
-            app.logger.info(
-                f"Received TextMessage {event.message.text} from SourceGroup with id '{event.source.user_id}'")
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(help_message_obj.help_message_group(event.source.room_id))
-            )
 
     @handler.default()
     def default(event):
