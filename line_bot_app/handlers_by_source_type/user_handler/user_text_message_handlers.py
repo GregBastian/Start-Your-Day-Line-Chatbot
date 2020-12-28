@@ -8,7 +8,7 @@ Created on 08/12/2020
 
 from line_bot_app.responses.text_message_responses.text_message_responses import \
     text_responses_obj
-from line_bot_app.responses.flex_message_response.flex_message_responses import \
+from line_bot_app.responses.flex_message_responses.flex_message_responses import \
     flex_responses_obj
 from line_bot_app.responses.image_message_response.image_message_responses import \
     image_response_obj

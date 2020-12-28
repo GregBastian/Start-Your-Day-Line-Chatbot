@@ -13,7 +13,7 @@ from line_bot_app.constants import ExternalUrls
 import requests
 
 
-class ImageResponse:
+class ImageResponses:
     def message_equals_cat(self, event, line_bot_api):
         while True:
             # put into loop because sometimes the requested media can be a video
@@ -37,4 +37,4 @@ class ImageResponse:
                 break
 
 
-image_response_obj = ImageResponse()
+image_response_obj = ImageResponses()

@@ -27,11 +27,12 @@ class HelpMessageUtil:
                "3. '!help' : display this message again"
 
     def help_message_room(self, roomDisplayName="ROOM_NAME"):
-        return f"Hello people of {roomDisplayName}!\n" \
-               "Write these commands, so I can start your day off properly:\n" \
-               "1. '!dog' : start your day with a cute random dog image\n" \
-               "2. '!cat' : start your day with an adorable random cat image\n" \
-               "3. '!help' : display this message again"
+        return "Hello people, for the time being, this bot cannot reply in rooms yet :("
+        # return f"Hello people of {roomDisplayName}!\n" \
+        #        "Write these commands, so I can start your day off properly:\n" \
+        #        "1. '!dog' : start your day with a cute random dog image\n" \
+        #        "2. '!cat' : start your day with an adorable random cat image\n" \
+        #        "3. '!help' : display this message again"
 
 
 help_message_obj = HelpMessageUtil()

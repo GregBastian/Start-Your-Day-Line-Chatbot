@@ -75,6 +75,7 @@ class AcceptedGroupTextMessages(ExtendedEnum):
     CAT = "!cat"
     DOG = "!dog"
     HELP = "!help"
+    LEAVE = "!leave"
 
 
 class AcceptedRoomTextMessages(ExtendedEnum):
@@ -83,6 +84,7 @@ class AcceptedRoomTextMessages(ExtendedEnum):
     CAT = "cat"
     DOG = "dog"
     HELP = "help"
+    LEAVE = "!leave"
 
 
 ADMIN_ID = os.getenv("ADMIN_ID", "")

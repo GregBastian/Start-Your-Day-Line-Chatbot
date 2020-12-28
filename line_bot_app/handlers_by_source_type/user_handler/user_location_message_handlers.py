@@ -6,7 +6,7 @@ Created on 13/12/2020
 @email: greg.sebastian@sprintasia.co.id / ivansebastian60@gmail.com
 """
 
-from line_bot_app.responses.flex_message_response.flex_message_responses import \
+from line_bot_app.responses.flex_message_responses.flex_message_responses import \
     flex_responses_obj
 
 

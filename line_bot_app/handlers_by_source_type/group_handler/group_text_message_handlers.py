@@ -10,6 +10,8 @@ from line_bot_app.responses.text_message_responses.text_message_responses import
     text_responses_obj
 from line_bot_app.responses.image_message_response.image_message_responses import \
     image_response_obj
+from line_bot_app.responses.leave_responses.leave_responses import \
+    leave_response_obj
 
 from line_bot_app.constants import AcceptedGroupTextMessages
 
@@ -28,6 +30,10 @@ class GroupTextMessageHandlers:
         elif message == AcceptedGroupTextMessages.HELP.value:
             # returns TEXT message
             text_responses_obj.message_equals_help(event, line_bot_api)
+
+        elif message == AcceptedGroupTextMessages.LEAVE.value:
+            # bot will leave group
+            leave_response_obj.leave_group(event, line_bot_api)
 
 
 group_text_message_event_handlers_obj = GroupTextMessageHandlers()
