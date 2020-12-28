@@ -68,7 +68,7 @@ class TextResponses:
         if closestMatch:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
+                TextSendMessage(f"Did you mean '{closestMatch[0]}'?\n\n"
                                 f"Try typing '{HELP_FORMAT[0]}' too see all the commands which I understand.")
             )
 
@@ -80,7 +80,7 @@ class TextResponses:
             )
 
     def group_fallback_message(self, event, line_bot_api):
-        message = event.message.text[1:]
+        message = event.message.text
         acceptedMessages = AcceptedGroupTextMessages.values2list()
         closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
 
@@ -88,7 +88,7 @@ class TextResponses:
         if closestMatch:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
+                TextSendMessage(f"Did you mean '!{closestMatch[0]}'?\n\n"
                                 f"Try typing '{HELP_FORMAT[1]}' too see all the commands which I understand.")
             )
 

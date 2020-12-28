@@ -39,9 +39,8 @@ class YoutubeTrollUrls(ExtendedEnum):
     URL_4 = "https://www.youtube.com/watch?v=8O_ifyIIrN4"
     URL_5 = "https://www.youtube.com/watch?v=nHRbZW097Uk"
     URL_6 = "https://www.youtube.com/watch?v=fMnIpIMuBJI"
-    URL_7 = "https://www.youtube.com/watch?v=f-tLr7vONmc"
-    URL_8 = "https://www.youtube.com/watch?v=GjyUk_Ebb4o"
-    URL_9 = "https://www.youtube.com/watch?v=3KANI2dpXLw"
+    URL_7 = "https://www.youtube.com/watch?v=GjyUk_Ebb4o"
+    URL_8 = "https://www.youtube.com/watch?v=3KANI2dpXLw"
 
 
 class ExternalUrlApis(ExtendedEnum):
@@ -71,11 +70,11 @@ class AcceptedUserTextMessages(ExtendedEnum):
 
 
 class AcceptedGroupTextMessages(ExtendedEnum):
-    ADMIN = "admin"
-    SUDO_SU = "sudo su"
-    CAT = "cat"
-    DOG = "dog"
-    HELP = "help"
+    ADMIN = "!admin"
+    SUDO_SU = "!sudo su"
+    CAT = "!cat"
+    DOG = "!dog"
+    HELP = "!help"
 
 
 class AcceptedRoomTextMessages(ExtendedEnum):

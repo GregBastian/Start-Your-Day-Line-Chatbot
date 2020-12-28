@@ -17,9 +17,6 @@ from line_bot_app.constants import AcceptedGroupTextMessages
 class GroupTextMessageHandlers:
     def group_text_message_handler_function(self, event, line_bot_api, message=""):
 
-        # string slicing to get rid of ! symbol at beginning of message
-        message = message[1:]
-
         if message == AcceptedGroupTextMessages.CAT.value:
             # returns IMAGE message
             image_response_obj.message_equals_cat(event, line_bot_api)
