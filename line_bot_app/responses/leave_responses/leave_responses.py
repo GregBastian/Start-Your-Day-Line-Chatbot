@@ -13,7 +13,7 @@ class LeaveResponses:
     def leave_group(self, event, line_bot_api):
         groupInfo = line_bot_api.get_group_summary(event.source.group_id)
         line_bot_api.reply_message(
-            event.repl_token,
+            event.reply_token,
             TextSendMessage(f"Goodbye people {groupInfo.group_name}! I will miss all of you :)"))
         line_bot_api.leave_group(event.source.group_id)
 
