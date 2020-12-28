@@ -22,16 +22,16 @@ class HelpMessageUtil:
     def help_message_group(self, groupDisplayName="GROUP_NAME"):
         return f"Hello people of {groupDisplayName}!\n" \
                "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
-               "1. '!dog' (Get Dog Pic): start your day with a cute random dog image\n" \
-               "2. '!cat' (Get Cat Pic): start your day with an adorable random cat image\n" \
-               "3. '!help' (Help): display this message again"
+               "1. '!dog' : start your day with a cute random dog image\n" \
+               "2. '!cat' : start your day with an adorable random cat image\n" \
+               "3. '!help' : display this message again"
 
-    def help_message_room(self, roomDisplayName):
+    def help_message_room(self, roomDisplayName="ROOM_NAME"):
         return f"Hello people of {roomDisplayName}!\n" \
                "I can help brighten up your day, write these commands so I can help brighten up your day:\n" \
-               "1. '!dog' (Get Dog Pic): start your day with a cute random dog image\n" \
-               "2. '!cat' (Get Cat Pic): start your day with an adorable random cat image\n" \
-               "3. '!help' (Help): display this message again"
+               "1. '!dog' : start your day with a cute random dog image\n" \
+               "2. '!cat' : start your day with an adorable random cat image\n" \
+               "3. '!help' : display this message again"
 
 
 

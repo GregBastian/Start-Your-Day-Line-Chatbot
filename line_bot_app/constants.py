@@ -12,6 +12,8 @@ QUICK_REPLY_ICONS = {
     "weather_icon": "https://img.icons8.com/color/48/000000/partly-cloudy-day--v1.png"
 }
 
+HELP_FORMAT = ("help", "!help")
+
 
 class ExtendedEnum(Enum):
     @classmethod
@@ -57,7 +59,7 @@ class QuickReplyIcons(ExtendedEnum):
     QOTD_ICON = "https://img.icons8.com/flat_round/64/000000/quote.png"
 
 
-class AcceptedTextMessages(ExtendedEnum):
+class AcceptedUserTextMessages(ExtendedEnum):
     ADMIN = "admin"
     SUDO_SU = "sudo su"
     QUOTE = "quote"
@@ -68,9 +70,21 @@ class AcceptedTextMessages(ExtendedEnum):
     HELP = "help"
 
 
-HELP_MESSAGE = """
-Hello
-"""
+class AcceptedGroupTextMessages(ExtendedEnum):
+    ADMIN = "admin"
+    SUDO_SU = "sudo su"
+    CAT = "cat"
+    DOG = "dog"
+    HELP = "help"
+
+
+class AcceptedRoomTextMessages(ExtendedEnum):
+    ADMIN = "admin"
+    SUDO_SU = "sudo su"
+    CAT = "cat"
+    DOG = "dog"
+    HELP = "help"
+
 
 ADMIN_ID = os.getenv("ADMIN_ID", "")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY", "")

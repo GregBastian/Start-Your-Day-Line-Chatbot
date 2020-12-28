@@ -8,9 +8,10 @@ Created on 09/12/2020
 
 from linebot.models import *
 
-from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, AcceptedTextMessages, YoutubeTrollUrls
+from line_bot_app.constants import QuickReplyIcons, ADMIN_ID, AcceptedUserTextMessages, AcceptedGroupTextMessages, \
+    YoutubeTrollUrls, HELP_FORMAT
 
-from line_bot_app.utils.help_message_util import help_message_obj
+from line_bot_app.responses.text_message_responses.text_message_templates.help_message_template import help_message_obj
 
 import difflib
 
@@ -29,7 +30,7 @@ class TextResponses:
         else:
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"hey {profile.display_name}... don't you dare fake as an admin")
+                TextSendMessage(f"Hey {profile.display_name}... don't you dare fake as an admin")
             )
 
     def message_equals_weather(self, event, line_bot_api):
@@ -58,9 +59,9 @@ class TextResponses:
             TextSendMessage(help_message_obj.help_message_user(profile.display_name))
         )
 
-    def fallback_message(self, event, line_bot_api):
+    def user_fallback_message(self, event, line_bot_api):
         message = event.message.text
-        acceptedMessages = AcceptedTextMessages.values2list()
+        acceptedMessages = AcceptedUserTextMessages.values2list()
         closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
 
         # check if theres anything in the list 'closestMatch'
@@ -68,21 +69,28 @@ class TextResponses:
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
-                                "Try typing 'help' too see all the commands which I understand.")
+                                f"Try typing '{HELP_FORMAT[0]}' too see all the commands which I understand.")
             )
 
         else:
-            if isinstance(event.source, SourceGroup) or isinstance(event.source, SourceRoom):
-                helpFormat = "!help"
-            else:
-                helpFormat = "help"
             line_bot_api.reply_message(
                 event.reply_token,
-                TextSendMessage(f"I don't understand what you mean. Try typing '{helpFormat}' too see all the commands"
-                                "which I understand.")
+                TextSendMessage(f"I don't understand what you mean. Try typing '{HELP_FORMAT[0]}' too see all the "
+                                f"commands which I understand.")
             )
 
+    def group_fallback_message(self, event, line_bot_api):
+        message = event.message.text[1:]
+        acceptedMessages = AcceptedGroupTextMessages.values2list()
+        closestMatch = difflib.get_close_matches(message, acceptedMessages, 1, 0.4)
 
+        # check if theres anything in the list 'closestMatch'
+        if closestMatch:
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(f"Do you mean {closestMatch[0]}?\n\n"
+                                f"Try typing '{HELP_FORMAT[1]}' too see all the commands which I understand.")
+            )
 
 
 text_responses_obj = TextResponses()

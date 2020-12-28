@@ -13,39 +13,41 @@ from line_bot_app.responses.flex_message_response.flex_message_responses import 
 from line_bot_app.responses.image_message_response.image_message_responses import \
     image_response_obj
 
-from line_bot_app.constants import AcceptedTextMessages
+from line_bot_app.constants import AcceptedGroupTextMessages
 
 
 class UserTextMessageHandlers:
     def user_text_message_handler_function(self, event, line_bot_api, message=""):
-        if message == AcceptedTextMessages.ADMIN.value or message == AcceptedTextMessages.SUDO_SU.value:
+        if message == AcceptedGroupTextMessages.ADMIN.value or message == AcceptedGroupTextMessages.SUDO_SU.value:
             # returns TEXT message
             text_responses_obj.message_equals_admin(event, line_bot_api)
 
-        elif message == AcceptedTextMessages.QUOTE.value:
+        elif message == AcceptedGroupTextMessages.QUOTE.value:
             # returns FLEX message
             flex_responses_obj.message_equals_quote(event, line_bot_api)
 
-        elif message == AcceptedTextMessages.WEATHER.value:
+        elif message == AcceptedGroupTextMessages.WEATHER.value:
             # returns TEXT message and QUICK REPLY
             text_responses_obj.message_equals_weather(event, line_bot_api)
 
-        elif message == AcceptedTextMessages.TROLL_ME.value:
+        elif message == AcceptedGroupTextMessages.TROLL_ME.value:
             # returns TEXT message
             text_responses_obj.message_equals_troll_me(event, line_bot_api)
 
-        elif message == AcceptedTextMessages.CAT.value:
+        elif message == AcceptedGroupTextMessages.CAT.value:
             # returns IMAGE message
             image_response_obj.message_equals_cat(event, line_bot_api)
-        elif message == AcceptedTextMessages.DOG.value:
-            # returns TEXT message
+
+        elif message == AcceptedGroupTextMessages.DOG.value:
+            # returns IMAGE message
             image_response_obj.message_equals_dog(event, line_bot_api)
         
-        elif message == AcceptedTextMessages.HELP.value:
+        elif message == AcceptedGroupTextMessages.HELP.value:
+            # returns TEXT message
             text_responses_obj.message_equals_help(event, line_bot_api)
 
         else:
-            text_responses_obj.fallback_message(event, line_bot_api)
+            text_responses_obj.user_fallback_message(event, line_bot_api)
 
 
 user_text_message_event_handlers_obj = UserTextMessageHandlers()

@@ -1,6 +1,6 @@
 # some future comment
 
-from line_bot_app.constants import AcceptedTextMessages
+from line_bot_app.constants import AcceptedGroupTextMessages
 
 import random
 
@@ -71,8 +71,8 @@ def get_quote_flex_message(quotesAndAuthors="", imageUrl="", quoteText="", quote
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "Kirim Quote Lagi",
-                        "text": AcceptedTextMessages.QUOTE.value
+                        "label": "Another Quote Please",
+                        "text": AcceptedGroupTextMessages.QUOTE.value
                     },
                     "position": "relative",
                     "margin": "sm",

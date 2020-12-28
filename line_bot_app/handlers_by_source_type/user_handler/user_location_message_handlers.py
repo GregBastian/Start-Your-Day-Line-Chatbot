@@ -10,9 +10,9 @@ from line_bot_app.responses.flex_message_response.flex_message_responses import 
     flex_responses_obj
 
 
-class LocationMessageHandlers:
+class UserLocationMessageHandlers:
     def user_location_message_handler_function(self, event, line_bot_api):
         flex_responses_obj.location_equals_received_location(event, line_bot_api)
 
 
-location_message_event_handlers_obj = LocationMessageHandlers()
+user_location_message_event_handlers_obj = UserLocationMessageHandlers()
