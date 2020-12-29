@@ -10,7 +10,7 @@ from linebot.models import *
 
 
 class LeaveResponses:
-    def leave_group(self, event, line_bot_api):
+    def leave_group_response(self, event, line_bot_api):
         groupInfo = line_bot_api.get_group_summary(event.source.group_id)
         line_bot_api.reply_message(
             event.reply_token,
